@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://de8vwoej0sfn8"
+path="res://.godot/imported/Grass Running.wav-b8f343dcf22547d7bbaf66e9a4b0c925.sample"
+
+[deps]
+
+source_file="res://Extras/Sound_Effects/Player/Grass Running.wav"
+dest_files=["res://.godot/imported/Grass Running.wav-b8f343dcf22547d7bbaf66e9a4b0c925.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

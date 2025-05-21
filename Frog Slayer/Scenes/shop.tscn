@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://u5xche78owdo"]
+
+[ext_resource type="Texture2D" uid="uid://cpjjjqs5bfyht" path="res://Assets/oak_woods_v1.0/decorations/shop_anim.png" id="1_a0mxf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2shtd"]
+size = Vector2(96, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io27d"]
+atlas = ExtResource("1_a0mxf")
+region = Rect2(0, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdj0q"]
+atlas = ExtResource("1_a0mxf")
+region = Rect2(118, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6jq0"]
+atlas = ExtResource("1_a0mxf")
+region = Rect2(236, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ps1r"]
+atlas = ExtResource("1_a0mxf")
+region = Rect2(354, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymrm4"]
+atlas = ExtResource("1_a0mxf")
+region = Rect2(472, 0, 118, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8dlv"]
+atlas = ExtResource("1_a0mxf")
+region = Rect2(590, 0, 118, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tyrku"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io27d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdj0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6jq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ps1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymrm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8dlv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Shop" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_2shtd")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1016, 800)
+sprite_frames = SubResource("SpriteFrames_tyrku")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.299543
+offset = Vector2(-1016, -800)

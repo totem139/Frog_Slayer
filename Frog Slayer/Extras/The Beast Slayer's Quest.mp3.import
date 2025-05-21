@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://uxl6ki6of0ug"
+path="res://.godot/imported/The Beast Slayer's Quest.mp3-0aedc4ce8db7ef83d6d6cfdb1b4a1a98.mp3str"
+
+[deps]
+
+source_file="res://Extras/The Beast Slayer's Quest.mp3"
+dest_files=["res://.godot/imported/The Beast Slayer's Quest.mp3-0aedc4ce8db7ef83d6d6cfdb1b4a1a98.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://btftg37ft6i87"]
+
+[ext_resource type="Script" uid="uid://bfujnjbgm3i0b" path="res://Scripts/target.gd" id="1_vq1qf"]
+[ext_resource type="Texture2D" uid="uid://1ggg2lonsc8v" path="res://Assets/heart.png" id="2_ls7vh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ls7vh"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2228f"]
+radius = 6.0
+
+[node name="target" type="CharacterBody2D"]
+script = ExtResource("1_vq1qf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ls7vh")
+
+[node name="HitboxArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+shape = SubResource("CircleShape2D_ls7vh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_2228f")

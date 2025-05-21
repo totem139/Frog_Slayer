@@ -1,0 +1,289 @@
+[gd_scene load_steps=19 format=3 uid="uid://eiuruk3qdefg"]
+
+[ext_resource type="Script" uid="uid://b46d2262gqgmq" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://dtr4sx0vucoc5" path="res://Assets/oak_woods_v1.0/character/char_blue.png" id="2_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://dn53lruo66ueo" path="res://Extras/Sound_Effects/Player/Whoosh kısa.wav" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://df703youvypuh" path="res://Extras/Sound_Effects/Player/Whoosh 4-1.wav" id="3_fkybt"]
+[ext_resource type="AudioStream" uid="uid://de8vwoej0sfn8" path="res://Extras/Sound_Effects/Player/Grass Running.wav" id="3_vgqql"]
+[ext_resource type="PackedScene" uid="uid://0jexvmxadnk8" path="res://Scenes/healthbar.tscn" id="6_x3wgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgqql"]
+size = Vector2(15, 31)
+
+[sub_resource type="Animation" id="Animation_6t5aa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageZone/SwordCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8erm5"]
+resource_name = "attack"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DamageZone/SwordCollider:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, false, true, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_states"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_6t5aa")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/3/use_blend = true
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"audio_random_pitch"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f1ek2"]
+resource_name = "dash"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [24]
+}
+
+[sub_resource type="Animation" id="Animation_3smsa"]
+resource_name = "dead"
+length = 4.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 51]
+}
+
+[sub_resource type="Animation" id="Animation_x3wgy"]
+resource_name = "fall"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [33, 34]
+}
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_fkybt"]
+resource_name = "jump"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [27, 28]
+}
+
+[sub_resource type="Animation" id="Animation_vgqql"]
+resource_name = "run"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1ek2"]
+_data = {
+&"RESET": SubResource("Animation_6t5aa"),
+&"attack": SubResource("Animation_8erm5"),
+&"dash": SubResource("Animation_f1ek2"),
+&"dead": SubResource("Animation_3smsa"),
+&"fall": SubResource("Animation_x3wgy"),
+&"idle": SubResource("Animation_cvnsp"),
+&"jump": SubResource("Animation_fkybt"),
+&"run": SubResource("Animation_vgqql")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(18, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6t5aa"]
+size = Vector2(16, 30)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 5
+script = ExtResource("1_cvnsp")
+
+[node name="Healthbar" parent="." instance=ExtResource("6_x3wgy")]
+offset_left = -10.0
+offset_top = 17.0
+offset_right = -6.0
+offset_bottom = 44.0
+scale = Vector2(4.34875, 0.236725)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-1, 0.5)
+shape = SubResource("RectangleShape2D_vgqql")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f1ek2")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -12)
+texture = ExtResource("2_6t5aa")
+hframes = 8
+vframes = 7
+
+[node name="DamageZone" type="Area2D" parent="."]
+
+[node name="SwordCollider" type="CollisionShape2D" parent="DamageZone"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(16, 0)
+shape = SubResource("RectangleShape2D_cvnsp")
+disabled = true
+debug_color = Color(0.807275, 0.00228429, 0.992104, 0.42)
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="PlayerHitbox"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_6t5aa")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Audio" type="AudioStreamPlayer2D" parent="."]
+
+[node name="RunAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vgqql")
+
+[node name="DashAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fkybt")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
